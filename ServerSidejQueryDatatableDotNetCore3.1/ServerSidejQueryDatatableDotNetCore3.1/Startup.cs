@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ServerSidejQueryDatatableDotNetCore3._1.Models;
 
 namespace ServerSidejQueryDatatableDotNetCore3._1
 {
@@ -22,6 +23,8 @@ namespace ServerSidejQueryDatatableDotNetCore3._1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DataTableDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DataTableDbContext")));
             services.AddControllersWithViews();
         }
 
