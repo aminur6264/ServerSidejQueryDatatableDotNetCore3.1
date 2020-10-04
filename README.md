@@ -1,0 +1,1 @@
+# ServerSidejQueryDatatableDotNetCore3.1
