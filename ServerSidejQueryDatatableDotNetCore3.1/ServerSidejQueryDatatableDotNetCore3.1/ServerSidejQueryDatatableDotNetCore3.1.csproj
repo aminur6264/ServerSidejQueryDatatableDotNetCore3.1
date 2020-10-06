@@ -6,6 +6,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\dist\css\**" />
+    <Compile Remove="wwwroot\dist\js\**" />
+    <Content Remove="wwwroot\dist\css\**" />
+    <Content Remove="wwwroot\dist\js\**" />
+    <EmbeddedResource Remove="wwwroot\dist\css\**" />
+    <EmbeddedResource Remove="wwwroot\dist\js\**" />
+    <None Remove="wwwroot\dist\css\**" />
+    <None Remove="wwwroot\dist\js\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20201006174503_initalCreate.cs" />
+    <Compile Remove="Migrations\20201006174503_initalCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\webfonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
