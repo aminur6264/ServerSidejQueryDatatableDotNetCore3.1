@@ -77,3 +77,4 @@ H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatat
 H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\obj\Debug\netcoreapp3.1\ServerSidejQueryDatatableDotNetCore3.1.dll
 H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\obj\Debug\netcoreapp3.1\ServerSidejQueryDatatableDotNetCore3.1.pdb
 H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\obj\Debug\netcoreapp3.1\ServerSidejQueryDatatableDotNetCore3.1.genruntimeconfig.cache
+H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\obj\Debug\netcoreapp3.1\ServerSidejQueryDatatableDotNetCore3.1.csprojAssemblyReference.cache

@@ -7,5 +7,75 @@
 </div>
 
 <div class="row">
-
+    <table id="tblProductList" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Sl</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Size</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <th>Sl</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Size</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+    </table>
 </div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#tblProductList thead tr:eq(0) th:not(:last,:first)').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" class="form-control mini-textbox" placeholder="Search ' + title + '" />');
+            });
+
+
+            //var patientTable = $('#tblProductList').DataTable({
+            //    lengthMenu: [[10, 20, 50, 100], [10, 20, 50, 100]],
+            //    processing: true,
+            //    searching: false,
+            //    serverSide: true,
+            //    scrollX: true,
+            //    fixedColumns: { leftColumns: 0, rightColumns: 1 },
+            //    ajax: {
+            //        "url": "/Prescription/Patients/AllPatient",
+            //        "type": "POST",
+            //        "datatype": "json"
+            //    },
+            //    columns: [
+            //        { 'data': 'sl' },
+            //        { 'data': 'name' },
+            //        { 'data': 'gender' },
+            //        { 'data': 'age' },
+            //        { 'data': 'totalVisit' },
+            //        { 'data': 'lastVisit' },
+            //        {
+            //            'data': 'lastVisit',
+            //            "render": function (id) {
+            //                return "<button class='btn btn-primary'>Edit</button>";
+            //            }
+            //        }
+            //    ]
+            //});
+
+            //$(patientTable.table().container()).on('keyup', 'thead input', function () {
+            //    var searchText = this.value.trim();
+            //    console.log(searchText.length);
+            //    if (searchText.length > 2) {
+            //        patientTable.column($(this).parent().index() + ':visible')
+            //            .search(searchText)
+            //            .draw();
+            //    }
+
+            //});
+        });
+    </script>
+
+}
