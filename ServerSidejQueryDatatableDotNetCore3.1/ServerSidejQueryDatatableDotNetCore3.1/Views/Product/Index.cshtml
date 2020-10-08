@@ -2,6 +2,11 @@
     ViewData["Title"] = "Product List";
 }
 
+@*<style>
+    #tblProductList_filter{
+        visibility:hidden;
+    }
+</style>*@
 <div class="row">
     <a href="@Url.Action("NewProduct","Product")">New Product</a>
 </div>
@@ -16,6 +21,7 @@
                 <th>Model</th>
                 <th>Size</th>
                 <th>Price</th>
+                <th>Price</th>
             </tr>
             <tr>
                 <th>Sl</th>
@@ -24,6 +30,7 @@
                 <th>Model</th>
                 <th>Size</th>
                 <th>Price</th>
+                <th>Price</th>
             </tr>
         </thead>
     </table>
@@ -31,50 +38,58 @@
 @section scripts{
     <script>
         $(document).ready(function () {
+
+          
+
             $('#tblProductList thead tr:eq(0) th:not(:last,:first)').each(function () {
                 var title = $(this).text();
                 $(this).html('<input type="text" class="form-control mini-textbox" placeholder="Search ' + title + '" />');
             });
 
 
-            //var patientTable = $('#tblProductList').DataTable({
-            //    lengthMenu: [[10, 20, 50, 100], [10, 20, 50, 100]],
-            //    processing: true,
-            //    searching: false,
-            //    serverSide: true,
-            //    scrollX: true,
-            //    fixedColumns: { leftColumns: 0, rightColumns: 1 },
-            //    ajax: {
-            //        "url": "/Prescription/Patients/AllPatient",
-            //        "type": "POST",
-            //        "datatype": "json"
-            //    },
-            //    columns: [
-            //        { 'data': 'sl' },
-            //        { 'data': 'name' },
-            //        { 'data': 'gender' },
-            //        { 'data': 'age' },
-            //        { 'data': 'totalVisit' },
-            //        { 'data': 'lastVisit' },
-            //        {
-            //            'data': 'lastVisit',
-            //            "render": function (id) {
-            //                return "<button class='btn btn-primary'>Edit</button>";
-            //            }
-            //        }
-            //    ]
-            //});
+            var productTable = $('#tblProductList').DataTable({
+                lengthMenu: [[10, 20, 50, 100], [10, 20, 50, 100]],
+                processing: true,
+                searching: true,
+                serverSide: true,
+                //scrollX: true,
+                //fixedColumns: { leftColumns: 0, rightColumns: 1 },
+                ajax: {
+                    //"url": "/Prescription/Patients/AllProduct",
+                    "url": "@Url.Action("AllProduct", "Product")",
+                    "type": "POST",
+                    contentType: "application/json",
+                    "datatype": "json",
+                    data: function (d) {
+                        return JSON.stringify(d);
+                    }
+                },
+                columns: [
+                    { 'data': 'sl', 'orderable': 'false' },
+                    { 'data': 'name' },
+                    { 'data': 'brand' },
+                    { 'data': 'model' },
+                    { 'data': 'size' },
+                    { 'data': 'price' },
+                    {
+                        'data': 'lastVisit',
+                        "render": function (id) {
+                            return "<button class='btn btn-primary'>Edit</button>";
+                        }
+                    }
+                ]
+            });
 
-            //$(patientTable.table().container()).on('keyup', 'thead input', function () {
-            //    var searchText = this.value.trim();
-            //    console.log(searchText.length);
-            //    if (searchText.length > 2) {
-            //        patientTable.column($(this).parent().index() + ':visible')
-            //            .search(searchText)
-            //            .draw();
-            //    }
+            $(productTable.table().container()).on('keyup', 'thead input', function () {
+                var searchText = this.value.trim();
+                //if (searchText.length > 2) {
+                    productTable.column($(this).parent().index() + ':visible')
+                        .search(searchText)
+                        .draw();
+                //}
 
-            //});
+            });
+            $('#tblProductList_filter').hide();
         });
     </script>
 

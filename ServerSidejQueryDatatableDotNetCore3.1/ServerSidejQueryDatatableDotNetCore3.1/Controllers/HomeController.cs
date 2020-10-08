@@ -23,6 +23,7 @@ namespace ServerSidejQueryDatatableDotNetCore3._1.Controllers
             return View();
         }
 
+
         public IActionResult Privacy()
         {
             return View();
