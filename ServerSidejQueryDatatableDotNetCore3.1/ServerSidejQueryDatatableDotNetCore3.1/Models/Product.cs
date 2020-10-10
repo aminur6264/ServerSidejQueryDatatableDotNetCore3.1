@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace ServerSidejQueryDatatableDotNetCore3._1.Models
         public string Brand { get; set; }
         public string Model { get; set; }
         public string Size { get; set; }
+        [Required]
         public decimal Price { get; set; }
     }
     public class Invoice

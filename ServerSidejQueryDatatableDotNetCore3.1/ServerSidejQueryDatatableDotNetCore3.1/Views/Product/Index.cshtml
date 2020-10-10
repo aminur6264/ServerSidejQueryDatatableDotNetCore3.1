@@ -7,12 +7,12 @@
         visibility:hidden;
     }
 </style>*@
-<div class="row">
-    <a href="@Url.Action("NewProduct","Product")">New Product</a>
-</div>
+@*<div class="row">
+    <a href="@Url.Action("NewProduct","Product")" class="btn btn-primary" >New Product</a>
+</div>*@
 
 <div class="row">
-    <table id="tblProductList" class="table table-bordered">
+    <table id="tblProductList" class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
                 <th>Sl</th>
@@ -39,7 +39,7 @@
     <script>
         $(document).ready(function () {
 
-          
+
 
             $('#tblProductList thead tr:eq(0) th:not(:last,:first)').each(function () {
                 var title = $(this).text();
@@ -72,9 +72,10 @@
                     { 'data': 'size' },
                     { 'data': 'price' },
                     {
-                        'data': 'lastVisit',
+                        'data': 'id',
                         "render": function (id) {
-                            return "<button class='btn btn-primary'>Edit</button>";
+                            console.log(id);
+                            return "<a class='btn btn-primary' href='Product/NewProduct/" + id + "'>Edit</a>";
                         }
                     }
                 ]
@@ -89,7 +90,7 @@
                 //}
 
             });
-            $('#tblProductList_filter').hide();
+            $('#tblProductList_filter').html('<a href="@Url.Action("NewProduct","Product")" class="btn btn-primary" style="margin-bottom:10px;">New Product</a>');
         });
     </script>
 
