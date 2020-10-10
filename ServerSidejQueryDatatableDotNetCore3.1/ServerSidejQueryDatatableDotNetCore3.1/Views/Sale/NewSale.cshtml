@@ -1,0 +1,150 @@
+﻿@{
+    ViewData["Title"] = "New Sale";
+}
+
+<div class="row text-center">
+    <div class="alert alert-success">
+        <label style="margin:0px auto">New Sale</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-inline" action="/action_page.php">
+        <div class="form-group">
+            <label for="txtProductName">Product:</label>
+            <input type="text" class="form-control" id="txtProductName">
+            <input type="hidden" class="form-control" id="hidProductId">
+        </div>
+        &nbsp;
+        <div class="form-group">
+            <label for="txtProductBrand">Brand:</label>
+            <input type="text" class="form-control input-sm" id="txtProductBrand" disabled>
+        </div>
+        &nbsp;
+        <div class="form-group">
+            <label for="txtProductModel">Model:</label>
+            <input type="text" class="form-control input-sm" id="txtProductModel" disabled>
+        </div>
+        &nbsp;
+        <div class="form-group">
+            <label for="txtProductSize">Size:</label>
+            <input type="text" class="form-control input-sm" id="txtProductSize" disabled>
+        </div>
+        &nbsp;
+        <div class="form-group">
+            <label for="txtProductPrice">Price:</label>
+            <input type="text" class="form-control" id="txtProductPrice" disabled="disabled">
+            <input type="hidden" class="form-control" id="hidProductPrice">
+        </div>
+        &nbsp;
+        <div class="form-group">
+            <label for="txtProductDiscount">Discount:</label>
+            <input type="text" class="form-control" id="txtProductDiscount" disabled>
+        </div>
+        &nbsp;
+        <button type="button" class="btn btn-primary">+</button>
+    </div>
+</div>
+<br />
+<br />
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Sl</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Size</th>
+                <th class="text-right">Discount</th>
+                <th class="text-right">Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th colspan="5" class="text-right">Total : </th>
+                <th class="text-right">
+                    <label id="lblTotalDiscount">0</label>
+                </th>
+                <th class="text-right">
+                    <label id="lblTotalPrice">0</label>
+                </th>
+                <th class="text-right">
+
+                </th>
+
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+
+            $('#txtProductName').autocomplete({
+
+                source: function (request, response){
+                    $.ajax({
+                        type: 'GET',
+                        url: '@Url.Action("GetProductList", "Product")',
+                        data: { name: this.term },
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                change: function (event, ui) {
+                    if (!ui.item) {
+                        $('#txtProductName').val('');
+                        $('#txtProductBrand').val('');
+                        $('#txtProductModel').val('');
+                        $('#txtProductSize').val('');
+                        $('#txtProductPrice').val('');
+                        $('#hidProductPrice').val('0');
+                        $('#txtProductDiscount').val('');
+                        $('#txtProductPrice').attr('disabled', 'disabled');
+                    }
+                },
+                select: function (e, ui) {
+                    var id = ui.item.id;
+                    $.ajax({
+                        url: '@Url.Action("GetProductById", "Product")',
+                        type: 'GET',
+                        data: { id: id }
+                    }).done(function (response) {
+                        console.log(response);
+                        $('#hidProductId').val(id);
+                        $('#txtProductBrand').val(response.brand);
+                        $('#txtProductModel').val(response.model);
+                        $('#txtProductSize').val(response.size);
+                        $('#txtProductPrice').val(response.price);
+                        $('#hidProductPrice').val(response.price);
+                        $('#txtProductDiscount').val('0');
+
+                        $('#txtProductPrice').removeAttr('disabled');
+
+                    }).fail(function (err) {
+                        alert('Not Found');
+                    });
+                }
+            });
+
+            $("input").keyup(function () {
+                var oritinalPrice = $('#hidProductPrice').val();
+                var currentPrice = $("#txtProductPrice").val();
+                if (currentPrice === '') {
+                    currentPrice = 0;
+                }
+                $("#txtProductDiscount").val(oritinalPrice - currentPrice);
+            });
+
+        });
+    </script>
+
+
+}

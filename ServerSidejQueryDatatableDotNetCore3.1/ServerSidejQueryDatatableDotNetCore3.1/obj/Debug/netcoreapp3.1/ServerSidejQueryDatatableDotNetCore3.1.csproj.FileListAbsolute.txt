@@ -67,6 +67,7 @@ H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatat
 H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
 H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\obj\Debug\netcoreapp3.1\Razor\Views\Product\NewProduct.cshtml.g.cs
 H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\obj\Debug\netcoreapp3.1\Razor\Views\Sale\Index.cshtml.g.cs
+H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\obj\Debug\netcoreapp3.1\Razor\Views\Sale\NewSale.cshtml.g.cs
 H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 H:\Git\Core\Core3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\ServerSidejQueryDatatableDotNetCore3.1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs

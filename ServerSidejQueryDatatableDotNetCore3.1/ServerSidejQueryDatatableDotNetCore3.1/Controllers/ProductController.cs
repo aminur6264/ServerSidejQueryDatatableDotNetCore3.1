@@ -155,5 +155,24 @@ namespace ServerSidejQueryDatatableDotNetCore3._1.Controllers
                 data = result
             });
         }
+
+
+        public ActionResult GetProductList(string name)
+        {
+            var result = db.Products.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList().Select(x => new
+            {
+                label = x.Name,
+                Id = x.Id
+            }).ToList().Take(10);
+
+            return Json(result);
+        }
+
+        public ActionResult GetProductById(int id)
+        {
+            var result = db.Products.FirstOrDefault(x=>x.Id == id);
+
+            return Json(result);
+        }
     }
 }
