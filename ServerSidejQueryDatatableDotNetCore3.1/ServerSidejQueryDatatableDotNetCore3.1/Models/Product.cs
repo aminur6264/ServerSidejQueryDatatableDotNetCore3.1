@@ -26,6 +26,7 @@ namespace ServerSidejQueryDatatableDotNetCore3._1.Models
     public class InvoiceDetails
     {
         public int Id { get; set; }
+        public int InvoiceId { get; set; }
         public int ProductId { get; set; }
         public decimal SalePrice { get; set; }
         public decimal Discount { get; set; }

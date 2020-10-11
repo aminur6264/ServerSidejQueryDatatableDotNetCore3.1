@@ -1,11 +1,12 @@
-﻿@{
+﻿@model ServerSidejQueryDatatableDotNetCore3._1.ViewModels.InvoiceViewModel;
+@{
     ViewData["Title"] = "New Sale";
 }
 
 <div class="row text-center">
-    <div class="alert alert-success">
-        <label style="margin:0px auto">New Sale</label>
-    </div>
+    @*<div class="alert alert-success">
+            <label style="margin:0px auto">New Sale</label>
+        </div>*@
 </div>
 
 <div class="row">
@@ -42,43 +43,55 @@
             <input type="text" class="form-control" id="txtProductDiscount" disabled>
         </div>
         &nbsp;
-        <button type="button" class="btn btn-primary">+</button>
+        <button type="button" id="btnAdd" class="btn btn-primary" disabled="disabled">+</button>
     </div>
 </div>
 <br />
 <br />
-<div class="row">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Sl</th>
-                <th>Name</th>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Size</th>
-                <th class="text-right">Discount</th>
-                <th class="text-right">Price</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
-            <tr>
-                <th colspan="5" class="text-right">Total : </th>
-                <th class="text-right">
-                    <label id="lblTotalDiscount">0</label>
-                </th>
-                <th class="text-right">
-                    <label id="lblTotalPrice">0</label>
-                </th>
-                <th class="text-right">
 
-                </th>
+@using (Html.BeginForm())
+{
 
-            </tr>
-        </tfoot>
-    </table>
-</div>
+
+    <div class="row">
+        
+        <table id="tblSalesDetails" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sl</th>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Size</th>
+                    <th class="text-right">Discount</th>
+                    <th class="text-right">Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tbodySaleDetails">
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="5" class="text-right">Total : </th>
+                    <th class="text-right">
+                        <input class="form-control" type="text" name="TotalDiscount" readonly="readonly" id="txtTotalDiscount" value="0" />
+                    </th>
+                    <th class="text-right">
+                        <input class="form-control" type="text" name="TotalPrice" readonly="readonly" id="txtTotalPrice" value="0" />
+                    </th>
+                    <th class="text-right">
+
+                    </th>
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <br />
+    <div class="row text-center">
+        <button type="submit" class="btn btn-success">Save</button>
+    </div>
+}
 
 
 @section scripts{
@@ -100,14 +113,7 @@
                 },
                 change: function (event, ui) {
                     if (!ui.item) {
-                        $('#txtProductName').val('');
-                        $('#txtProductBrand').val('');
-                        $('#txtProductModel').val('');
-                        $('#txtProductSize').val('');
-                        $('#txtProductPrice').val('');
-                        $('#hidProductPrice').val('0');
-                        $('#txtProductDiscount').val('');
-                        $('#txtProductPrice').attr('disabled', 'disabled');
+                        clear();
                     }
                 },
                 select: function (e, ui) {
@@ -127,6 +133,7 @@
                         $('#txtProductDiscount').val('0');
 
                         $('#txtProductPrice').removeAttr('disabled');
+                        $('#btnAdd').removeAttr('disabled');
 
                     }).fail(function (err) {
                         alert('Not Found');
@@ -139,11 +146,73 @@
                 var currentPrice = $("#txtProductPrice").val();
                 if (currentPrice === '') {
                     currentPrice = 0;
+                    $('#btnAdd').attr('disabled', 'disabled');
+                }
+                else {
+                    $('#btnAdd').removeAttr('disabled');
                 }
                 $("#txtProductDiscount").val(oritinalPrice - currentPrice);
             });
 
+            $('#btnAdd').click(function () {
+                var productId = $('#hidProductId').val();
+                var productName = $('#txtProductName').val();
+                var productBrand = $('#txtProductBrand').val();
+                var productModel = $('#txtProductModel').val();
+                var productSize = $('#txtProductSize').val();
+                var productPrice = $('#txtProductPrice').val();
+                var productDiscount = $('#txtProductDiscount').val();
+
+                var totalDiscount = $('#txtTotalDiscount').val();
+                var totalPrice = $('#txtTotalPrice').val();
+
+                console.log(totalDiscount);
+                console.log(totalPrice);
+
+               var rowCount =  $('#tblSalesDetails tbody').find('tr').length + 1;
+
+                
+                var rowIndex = rowCount - 1;
+
+                var row = '<tr>'
+
+                row += '<td><label>' + rowCount + '</label></td>';
+
+                row += '<td><label>' + productName + '</label>';
+                row += '<input type="hidden" name="InvoiceDetails[' + rowIndex+'].ProductId" value="' + productId + '" /></td>';
+
+                row += '<td><label>' + productBrand + '</label></td>';
+                row += '<td><label>' + productModel + '</label></td>';
+                row += '<td><label>' + productSize + '</label></td>';
+
+                row += '<td class="text-right"><label>' + productDiscount + '</label>';
+                row += '<input type="hidden" name="InvoiceDetails[' + rowIndex +'].Discount" value="' + productDiscount + '" /></td>';
+
+                row += '<td class="text-right"><label>' + productPrice + '</label>';
+                row += '<input type="hidden" name="InvoiceDetails[' + rowIndex +'].SalePrice" value="' + productPrice + '" /></td>';
+
+                row += '<td></td>';
+                row += '</tr>';
+                $('#tbodySaleDetails').append(row);
+                $('#txtTotalDiscount').val(parseFloat(totalDiscount) + parseFloat(productDiscount));
+                $('#txtTotalPrice').val(parseFloat(totalPrice) + parseFloat(productPrice));
+                clear();
+            });
+
         });
+        function clear() {
+            $('#txtProductName').val('');
+            $('#txtProductBrand').val('');
+            $('#txtProductModel').val('');
+            $('#txtProductSize').val('');
+            $('#txtProductPrice').val('');
+            $('#hidProductPrice').val('0');
+            $('#txtProductDiscount').val('');
+            $('#txtProductPrice').attr('disabled', 'disabled');
+            $('#btnAdd').attr('disabled', 'disabled');
+            $('#hidProductId').val('');
+        }
+
     </script>
 
 
