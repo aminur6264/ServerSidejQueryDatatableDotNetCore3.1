@@ -26,6 +26,17 @@ namespace ServerSidejQueryDatatableDotNetCore3._1.Controllers
             InvoiceViewModel invoice = new InvoiceViewModel();
             return View(invoice);
         }
+        public IActionResult GetSaleDetailsByInvoice(int id)
+        {
+            var invoice = db.Invoices.FirstOrDefault(x=>x.Id == id);
+            InvoiceViewModel invoiceViewModel = new InvoiceViewModel()
+            {
+                InvoiceDetails = db.InvoiceDetails.Where(x=>x.InvoiceId == id).ToList(),
+                TotalDiscount = invoice.DiscountAmount,
+                TotalPrice = invoice.TotalAmount
+            };
+            return Json(invoiceViewModel);
+        }
         [HttpPost]
         public IActionResult NewSale(InvoiceViewModel invoices)
         {
@@ -64,7 +75,7 @@ namespace ServerSidejQueryDatatableDotNetCore3._1.Controllers
             {
                 SL = index + 1,
                 Id = x.Id,
-                SalesDate = x.SalesDate.ToString(),
+                SalesDate = x.SalesDate.ToString("dd/MMM/yyyy"),
                 DiscountAmount = x.DiscountAmount, 
                 TotalAmount = x.TotalAmount 
             }).ToList();

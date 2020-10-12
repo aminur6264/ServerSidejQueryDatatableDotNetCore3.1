@@ -2,9 +2,19 @@
     ViewData["Title"] = "Sales List";
 }
 
+<style>
+    td.details-control {
+        background: url('lib/jqueryDataTable/css/images/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+
+    tr.shown td.details-control {
+        background: url('lib/jqueryDataTable/css/images/details_close.png') no-repeat center center;
+    }
+</style>
 
 <div class="row">
-    <table id="tblProductList" class="table table-bordered table-hover table-striped">
+    <table id="tblSalesList" class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
                 <th>Sl</th>
@@ -15,7 +25,6 @@
                 <th>Action</th>
             </tr>
             <tr>
-            <tr>
                 <th>Sl</th>
                 <th>Invoice</th>
                 <th>Date</th>
@@ -23,24 +32,20 @@
                 <th>Discount</th>
                 <th>Action</th>
             </tr>
-            </tr>
         </thead>
     </table>
 </div>
+
+
 @section scripts{
     <script>
         $(document).ready(function () {
 
-
-
-             
-
-
-            var productTable = $('#tblProductList').DataTable({
+            var saleTable = $('#tblSalesList').DataTable({
                 lengthMenu: [[10, 20, 50, 100], [10, 20, 50, 100]],
                 processing: true,
                 searching: true,
-                serverSide: true,
+                //serverSide: true,
                 //scrollX: true,
                 //fixedColumns: { leftColumns: 0, rightColumns: 1 },
                 ajax: {
@@ -56,30 +61,75 @@
                 columns: [
                     { 'data': 'sl', 'orderable': 'false' },
                     { 'data': 'id' },
-                    { 'data': 'SalesDate' },
-                    { 'data': 'DiscountAmount' },
-                    { 'data': 'TotalAmount' },
+                    { 'data': 'salesDate' },
+                    { 'data': 'discountAmount' },
+                    { 'data': 'totalAmount' },
                     {
-                        'data': 'id',
-                        "render": function (id) {
-                            console.log(id);
-                            return "<a class='btn btn-primary' href='Product/NewProduct/" + id + "'>Edit</a>";
-                        }
+                        "className": 'details-control',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ''
                     }
                 ]
             });
 
-            $(productTable.table().container()).on('keyup', 'thead input', function () {
+            $(saleTable.table().container()).on('keyup', 'thead input', function () {
                 var searchText = this.value.trim();
-                //if (searchText.length > 2) {
-                    productTable.column($(this).parent().index() + ':visible')
+                saleTable.column($(this).parent().index() + ':visible')
                         .search(searchText)
                         .draw();
-                //}
-
             });
+
+            $('#tblSalesList tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = saleTable.row(tr);
+
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    $.ajax({
+                         url: '@Url.Action("GetSaleDetailsByInvoice", "Sale")',
+                         type: 'GET',
+                        data: { id: row.data().id }
+                    }).done(function (response) {
+                        //row.data()
+                        row.child(format(response)).show();
+                         tr.addClass('shown');
+                         return table;
+                     }).fail(function (err) {
+                         console.log(table);
+                         return table;
+                     });
+                    
+                }
+            });
+
             $('#tblProductList_filter').html('<a href="@Url.Action("NewSale","Sale")" class="btn btn-primary" style="margin-bottom:10px;">New Product</a>');
         });
+
+        function format(d) {
+
+
+
+            //return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+            //    '<tr>' +
+            //    '<td>Full name:</td>' +
+            //    '<td>' + d.name + '</td>' +
+            //    '</tr>' +
+            //    '<tr>' +
+            //    '<td>Extension number:</td>' +
+            //    '<td>' + d.extn + '</td>' +
+            //    '</tr>' +
+            //    '<tr>' +
+            //    '<td>Extra info:</td>' +
+            //    '<td>And any further details here (images etc)...</td>' +
+            //    '</tr>' +
+            //    '</table>';
+        }
     </script>
 
 }
