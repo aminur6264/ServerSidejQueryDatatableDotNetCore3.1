@@ -55,7 +55,7 @@ namespace ServerSidejQueryDatatableDotNetCore3._1
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Sale}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

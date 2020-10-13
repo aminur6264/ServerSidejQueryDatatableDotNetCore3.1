@@ -11,6 +11,11 @@
     tr.shown td.details-control {
         background: url('lib/jqueryDataTable/css/images/details_close.png') no-repeat center center;
     }
+
+    td.donwload-control {
+        background: url('img/pdfDownload.jpg') no-repeat center center;
+        cursor: pointer;
+    }
 </style>
 
 <div class="row">
@@ -22,7 +27,7 @@
                 <th>Date</th>
                 <th>Amount</th>
                 <th>Discount</th>
-                <th>Action</th>
+                <th>Invoice</th>
             </tr>
             <tr>
                 <th>Sl</th>
@@ -30,7 +35,8 @@
                 <th>Date</th>
                 <th>Amount</th>
                 <th>Discount</th>
-                <th>Action</th>
+                <th>Details</th>
+                <th>Invoice</th>
             </tr>
         </thead>
     </table>
@@ -69,6 +75,12 @@
                         "orderable": false,
                         "data": null,
                         "defaultContent": ''
+                    },
+                    {
+                        "className": 'donwload-control',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ''
                     }
                 ]
             });
@@ -101,34 +113,33 @@
                          tr.addClass('shown');
                          return table;
                      }).fail(function (err) {
-                         console.log(table);
                          return table;
                      });
                     
                 }
             });
 
-            $('#tblProductList_filter').html('<a href="@Url.Action("NewSale","Sale")" class="btn btn-primary" style="margin-bottom:10px;">New Product</a>');
+            $('#tblSalesList_filter').html('<a href="@Url.Action("NewSale","Sale")" class="btn btn-primary" style="margin-bottom:10px;">New Sale</a>');
         });
 
         function format(d) {
+            console.log(d);
 
 
-
-            //return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-            //    '<tr>' +
-            //    '<td>Full name:</td>' +
-            //    '<td>' + d.name + '</td>' +
-            //    '</tr>' +
-            //    '<tr>' +
-            //    '<td>Extension number:</td>' +
-            //    '<td>' + d.extn + '</td>' +
-            //    '</tr>' +
-            //    '<tr>' +
-            //    '<td>Extra info:</td>' +
-            //    '<td>And any further details here (images etc)...</td>' +
-            //    '</tr>' +
-            //    '</table>';
+            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                '<tr>' +
+                '<td>Full name:</td>' +
+                '<td>' + d.name + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>Extension number:</td>' +
+                '<td>' + d.extn + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>Extra info:</td>' +
+                '<td>And any further details here (images etc)...</td>' +
+                '</tr>' +
+                '</table>';
         }
     </script>
 
