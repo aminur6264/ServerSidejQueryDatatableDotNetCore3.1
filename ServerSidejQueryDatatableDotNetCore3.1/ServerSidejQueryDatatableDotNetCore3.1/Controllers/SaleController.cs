@@ -28,10 +28,28 @@ namespace ServerSidejQueryDatatableDotNetCore3._1.Controllers
         }
         public IActionResult GetSaleDetailsByInvoice(int id)
         {
-            var invoice = db.Invoices.FirstOrDefault(x=>x.Id == id);
-            InvoiceViewModel invoiceViewModel = new InvoiceViewModel()
+            var invoice = db.Invoices.FirstOrDefault(x => x.Id == id);
+            var invoiceDetails = db.InvoiceDetails.Where(x => x.InvoiceId == id).ToList();
+            List<InvoiceDetailsViewModel> GetSaleDetailsByInvoice = new List<InvoiceDetailsViewModel>();
+            foreach (InvoiceDetails item in invoiceDetails)
             {
-                InvoiceDetails = db.InvoiceDetails.Where(x=>x.InvoiceId == id).ToList(),
+                Product product = db.Products.FirstOrDefault(x=>x.Id == item.ProductId);
+                InvoiceDetailsViewModel details = new InvoiceDetailsViewModel()
+                {
+                    Name = product.Name,
+                    ProductId = product.Id,
+                    Brand  = product.Brand,
+                    Model  = product.Model,
+                    Size  = product.Size,
+                    InvoiceId = id,
+                    Discount = item.Discount,
+                    SalePrice = item.SalePrice
+                };
+                GetSaleDetailsByInvoice.Add(details);
+            }
+            ReportViewModel invoiceViewModel = new ReportViewModel()
+            {
+                 InvoiceDetails = GetSaleDetailsByInvoice,
                 TotalDiscount = invoice.DiscountAmount,
                 TotalPrice = invoice.TotalAmount
             };
@@ -60,7 +78,7 @@ namespace ServerSidejQueryDatatableDotNetCore3._1.Controllers
                 db.InvoiceDetails.Add(invoiceDetails);
             }
             db.SaveChanges();
-            return RedirectToAction("Index","Sale");
+            return RedirectToAction("Index", "Sale");
         }
 
         public IActionResult AllSales([FromBody] DtParameters dtParameters)
@@ -76,8 +94,8 @@ namespace ServerSidejQueryDatatableDotNetCore3._1.Controllers
                 SL = index + 1,
                 Id = x.Id,
                 SalesDate = x.SalesDate.ToString("dd/MMM/yyyy"),
-                DiscountAmount = x.DiscountAmount, 
-                TotalAmount = x.TotalAmount 
+                DiscountAmount = x.DiscountAmount,
+                TotalAmount = x.TotalAmount
             }).ToList();
 
             return Json(new

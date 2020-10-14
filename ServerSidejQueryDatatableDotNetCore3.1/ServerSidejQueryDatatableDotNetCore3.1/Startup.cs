@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ServerSidejQueryDatatableDotNetCore3._1.Models;
 using Newtonsoft.Json.Converters;
+using Rotativa.AspNetCore;
 
 namespace ServerSidejQueryDatatableDotNetCore3._1
 {
@@ -57,6 +58,7 @@ namespace ServerSidejQueryDatatableDotNetCore3._1
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }

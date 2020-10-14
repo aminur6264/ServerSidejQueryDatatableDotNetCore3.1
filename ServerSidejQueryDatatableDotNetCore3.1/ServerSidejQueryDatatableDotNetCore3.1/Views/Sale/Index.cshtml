@@ -27,6 +27,7 @@
                 <th>Date</th>
                 <th>Amount</th>
                 <th>Discount</th>
+                <th>Details</th>
                 <th>Invoice</th>
             </tr>
             <tr>
@@ -126,20 +127,65 @@
             console.log(d);
 
 
-            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-                '<tr>' +
-                '<td>Full name:</td>' +
-                '<td>' + d.name + '</td>' +
-                '</tr>' +
-                '<tr>' +
-                '<td>Extension number:</td>' +
-                '<td>' + d.extn + '</td>' +
-                '</tr>' +
-                '<tr>' +
-                '<td>Extra info:</td>' +
-                '<td>And any further details here (images etc)...</td>' +
-                '</tr>' +
-                '</table>';
+            //return '<table cellpadding="7" cellspacing="0" border="0" style="padding-left:50px;">' +
+            //    '<tr>' +
+            //    '<td>Full name:</td>' +
+            //    '<td></td>' +
+            //    '</tr>' +
+            //    '<tr>' +
+            //    '<td>Extension number:</td>' +
+            //    '<td></td>' +
+            //    '</tr>' +
+            //    '<tr>' +
+            //    '<td>Extra info:</td>' +
+            //    '<td>And any further details here (images etc)...</td>' +
+            //    '</tr>' +
+            //    '</table>';
+            var table = '<table class="table">';
+            table += '<thead>';
+            table += '<tr>';
+            table += '<th>Sl#</th>';
+            table += '<th>Name</th>';
+            table += '<th>Model</th>';
+            table += '<th>Band</th>';
+            table += '<th>Size</th>';
+            table += '<th>Discount</th>';
+            table += '<th>Price</th>';
+            table += '</tr>';
+            table += '</thead>';
+            table += '<tbody>';
+
+            var totalDiscount = 0;
+            var totalPrice = 0;
+            var index = 1;
+
+            $.each(d.invoiceDetails, function () {
+                table += '<tr>';
+                table += '<td>' + index +'</td>';
+                table += '<td>' + this.name+'</td>';
+                table += '<td>'+this.model+'</td>';
+                table += '<td>'+this.brand+'</td>';
+                table += '<td>'+this.size+'</td>';
+                table += '<td>'+this.discount+'</td>';
+                table += '<td>'+this.salePrice+'</td>';
+                table += '</tr>';
+                index++;
+                totalDiscount += this.discount;
+                totalPrice += this.salePrice;
+            });
+            
+            table += '</tbody>';
+
+
+            table += '<tfoot>';
+            table += '<tr>';
+            table += '<td colspan="5">Total : </td>';
+            table += '<td>' + totalDiscount+ '</td>';
+            table += '<td>' + totalPrice+ '</td>';
+            table += '</tr>';
+            table += '</tfoot>';
+            console.log(table);
+            return table;
         }
     </script>
 
