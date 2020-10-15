@@ -1,10 +1,10 @@
 
 <p align="center">
-  <h1>Server Side jQuery-Datatable in DotNet Core 3.1</h1>
+  <h1>Contact</h1>
 </p>
 
 <p align="center">
-  Connect with me :
+  <h3>Server Side jQuery-Datatable in DotNet Core 3.1</h3>
   <br />
   <a href="https://www.upwork.com/freelancers/~01bf02fa02ddb70e91" target="_blank">
 	<img src="images/upwork.png" height="60">
