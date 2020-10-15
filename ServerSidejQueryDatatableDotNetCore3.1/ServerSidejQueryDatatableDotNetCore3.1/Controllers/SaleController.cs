@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Rotativa.AspNetCore;
 using ServerSidejQueryDatatableDotNetCore3._1.Models;
 using ServerSidejQueryDatatableDotNetCore3._1.Utility;
 using ServerSidejQueryDatatableDotNetCore3._1.ViewModels;
@@ -20,6 +21,39 @@ namespace ServerSidejQueryDatatableDotNetCore3._1.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+        public IActionResult InvoiceReport(int id)
+        {
+            var invoice = db.Invoices.FirstOrDefault();
+            //int id = invoice.Id;
+            var invoiceDetails = db.InvoiceDetails.Where(x => x.InvoiceId == id).ToList();
+            List<InvoiceDetailsViewModel> GetSaleDetailsByInvoice = new List<InvoiceDetailsViewModel>();
+            foreach (InvoiceDetails item in invoiceDetails)
+            {
+                Product product = db.Products.FirstOrDefault(x => x.Id == item.ProductId);
+                InvoiceDetailsViewModel details = new InvoiceDetailsViewModel()
+                {
+                    Name = product.Name,
+                    ProductId = product.Id,
+                    Brand = product.Brand,
+                    Model = product.Model,
+                    Size = product.Size,
+                    InvoiceId = id,
+                    Discount = item.Discount,
+                    SalePrice = item.SalePrice
+                };
+                GetSaleDetailsByInvoice.Add(details);
+            }
+            ReportViewModel invoiceViewModel = new ReportViewModel()
+            {
+                InvoiceNo = id,
+                InvoiceDetails = GetSaleDetailsByInvoice,
+                TotalDiscount = invoice.DiscountAmount,
+                TotalPrice = invoice.TotalAmount
+            };
+            //return Json(invoiceViewModel);
+            return new ViewAsPdf(invoiceViewModel);
+            //return View(invoiceViewModel);
         }
         public IActionResult NewSale()
         {
@@ -49,7 +83,8 @@ namespace ServerSidejQueryDatatableDotNetCore3._1.Controllers
             }
             ReportViewModel invoiceViewModel = new ReportViewModel()
             {
-                 InvoiceDetails = GetSaleDetailsByInvoice,
+                InvoiceNo = id,
+                InvoiceDetails = GetSaleDetailsByInvoice,
                 TotalDiscount = invoice.DiscountAmount,
                 TotalPrice = invoice.TotalAmount
             };

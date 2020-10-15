@@ -102,6 +102,7 @@
     <None Include="wwwroot\lib\jqueryDataTable\js\responsive.jqueryui.min.js" />
     <None Include="wwwroot\lib\jqueryDataTable\js\responsive.semanticui.js" />
     <None Include="wwwroot\lib\jqueryDataTable\js\responsive.semanticui.min.js" />
+    <None Include="wwwroot\Rotativa\wkhtmltopdf.exe" />
     <None Include="wwwroot\webfonts\fa-brands-400.svg" />
     <None Include="wwwroot\webfonts\fa-brands-400.woff2" />
     <None Include="wwwroot\webfonts\fa-regular-400.svg" />

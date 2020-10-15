@@ -16,6 +16,10 @@
         background: url('img/pdfDownload.jpg') no-repeat center center;
         cursor: pointer;
     }
+    #tblSalesList_wrapper{
+        width:620px;
+        margin:0px auto;
+    }
 </style>
 
 <div class="row">
@@ -116,31 +120,21 @@
                      }).fail(function (err) {
                          return table;
                      });
-                    
+
                 }
+            });
+
+            $('#tblSalesList tbody').on('click', 'td.donwload-control', function () {
+                var tr = $(this).closest('tr');
+                var row = saleTable.row(tr);
+                var id = row.data().id;
+                window.open("@Url.Action("InvoiceReport", "Sale")/" + id + "", "_blank");
             });
 
             $('#tblSalesList_filter').html('<a href="@Url.Action("NewSale","Sale")" class="btn btn-primary" style="margin-bottom:10px;">New Sale</a>');
         });
 
         function format(d) {
-            console.log(d);
-
-
-            //return '<table cellpadding="7" cellspacing="0" border="0" style="padding-left:50px;">' +
-            //    '<tr>' +
-            //    '<td>Full name:</td>' +
-            //    '<td></td>' +
-            //    '</tr>' +
-            //    '<tr>' +
-            //    '<td>Extension number:</td>' +
-            //    '<td></td>' +
-            //    '</tr>' +
-            //    '<tr>' +
-            //    '<td>Extra info:</td>' +
-            //    '<td>And any further details here (images etc)...</td>' +
-            //    '</tr>' +
-            //    '</table>';
             var table = '<table class="table">';
             table += '<thead>';
             table += '<tr>';
@@ -173,7 +167,7 @@
                 totalDiscount += this.discount;
                 totalPrice += this.salePrice;
             });
-            
+
             table += '</tbody>';
 
 

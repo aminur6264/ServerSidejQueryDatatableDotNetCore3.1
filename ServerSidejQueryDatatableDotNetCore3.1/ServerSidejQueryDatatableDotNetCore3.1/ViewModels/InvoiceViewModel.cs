@@ -14,6 +14,7 @@ namespace ServerSidejQueryDatatableDotNetCore3._1.ViewModels
     }
     public class ReportViewModel
     {
+        public int InvoiceNo { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal TotalDiscount { get; set; }
         public List<InvoiceDetailsViewModel> InvoiceDetails { get; set; }

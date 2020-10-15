@@ -36,7 +36,8 @@ namespace ServerSidejQueryDatatableDotNetCore3._1
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        [Obsolete]
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Microsoft.AspNetCore.Hosting.IHostingEnvironment env2)
         {
             if (env.IsDevelopment())
             {
@@ -58,7 +59,7 @@ namespace ServerSidejQueryDatatableDotNetCore3._1
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
+            RotativaConfiguration.Setup(env2);
         }
     }
 }
