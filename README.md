@@ -6,7 +6,7 @@
 <p align="center">
   Connect with me :
   <a href="www.facebook.com/aminur6264" target="_blank">
-	<img src="images/upwork.png">
+	<img src="images/upwork.png" height="100">
   </a>
   <a href="www.facebook.com/aminur6264" target="_blank">Facebook</a>
   <a href="www.facebook.com/aminur6264" target="_blank">Facebook</a>
