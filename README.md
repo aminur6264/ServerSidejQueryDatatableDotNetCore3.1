@@ -5,12 +5,16 @@
 
 <p align="center">
   Connect with me :
-  <a href="www.facebook.com/aminur6264" target="_blank">
+  <br />
+  <a href="https://www.upwork.com/freelancers/~01bf02fa02ddb70e91" target="_blank">
 	<img src="images/upwork.png" height="100">
   </a>
-  <a href="www.facebook.com/aminur6264" target="_blank">Facebook</a>
-  <a href="www.facebook.com/aminur6264" target="_blank">Facebook</a>
-  <a href="www.facebook.com/aminur6264" target="_blank">Facebook</a>
+  <a href="https://www.linkedin.com/in/aminur6264/" target="_blank">
+	<img src="images/linkedin.png" height="100">
+  </a>
+  <a href="www.facebook.com/aminur6264" target="_blank">
+	<img src="images/fb.png" height="100">
+  </a>
 </p>
 
 
