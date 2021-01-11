@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+4t3K4eBOzciIfZ3U+cFLjNngBhcyxIlxa2oAYRm28NlDbMdHLDy2aftz6+vmxzuF07qmd8UFZbMNReXl8YIgg==",
+  "dgSpecHash": "9OxgXNNZoQaItKVL6F76DcrmImI76gPbI0mxAMduvbMaVCRoH3+ERmlCud0tSilKfpa+Dtf60jsVZhtoJ7TF0g==",
   "success": true,
-  "projectFilePath": "H:\\Git\\Core\\Core3.1\\ServerSidejQueryDatatableDotNetCore3.1\\ServerSidejQueryDatatableDotNetCore3.1\\ServerSidejQueryDatatableDotNetCore3.1\\ServerSidejQueryDatatableDotNetCore3.1.csproj",
+  "projectFilePath": "H:\\Git\\Project\\jQueryDataTables\\ServerSidejQueryDatatableDotNetCore3.1\\ServerSidejQueryDatatableDotNetCore3.1\\ServerSidejQueryDatatableDotNetCore3.1\\ServerSidejQueryDatatableDotNetCore3.1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AMINUR\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.0.1\\microsoft.aspnetcore.antiforgery.2.0.1.nupkg.sha512",
     "C:\\Users\\AMINUR\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.0.1\\microsoft.aspnetcore.authentication.abstractions.2.0.1.nupkg.sha512",
@@ -143,7 +143,7 @@
     "C:\\Users\\AMINUR\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\AMINUR\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Users\\AMINUR\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.net.nameresolution\\4.3.0\\system.net.nameresolution.4.3.0.nupkg.sha512",
+    "C:\\Users\\AMINUR\\.nuget\\packages\\system.net.nameresolution\\4.3.0\\system.net.nameresolution.4.3.0.nupkg.sha512",
     "C:\\Users\\AMINUR\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\AMINUR\\.nuget\\packages\\system.objectmodel\\4.3.0\\system.objectmodel.4.3.0.nupkg.sha512",
     "C:\\Users\\AMINUR\\.nuget\\packages\\system.private.datacontractserialization\\4.3.0\\system.private.datacontractserialization.4.3.0.nupkg.sha512",
@@ -165,7 +165,7 @@
     "C:\\Users\\AMINUR\\.nuget\\packages\\system.runtime.interopservices.runtimeinformation\\4.0.0\\system.runtime.interopservices.runtimeinformation.4.0.0.nupkg.sha512",
     "C:\\Users\\AMINUR\\.nuget\\packages\\system.runtime.numerics\\4.3.0\\system.runtime.numerics.4.3.0.nupkg.sha512",
     "C:\\Users\\AMINUR\\.nuget\\packages\\system.runtime.serialization.formatters\\4.3.0\\system.runtime.serialization.formatters.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.runtime.serialization.json\\4.3.0\\system.runtime.serialization.json.4.3.0.nupkg.sha512",
+    "C:\\Users\\AMINUR\\.nuget\\packages\\system.runtime.serialization.json\\4.3.0\\system.runtime.serialization.json.4.3.0.nupkg.sha512",
     "C:\\Users\\AMINUR\\.nuget\\packages\\system.runtime.serialization.primitives\\4.3.0\\system.runtime.serialization.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\AMINUR\\.nuget\\packages\\system.security.accesscontrol\\4.5.0\\system.security.accesscontrol.4.5.0.nupkg.sha512",
     "C:\\Users\\AMINUR\\.nuget\\packages\\system.security.cryptography.algorithms\\4.3.0\\system.security.cryptography.algorithms.4.3.0.nupkg.sha512",
